@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disease Outbreak Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #f7f2e7, #ece8d9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 900px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .col {
+            flex: 1 1 calc(50% - 20px);
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, select {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 15px;
+            background-color: #8b6f47;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #705837;
+        }
+    </style>
+</head>
+<body>
+    <form action="/predict" method="POST">
+        <h2>Disease Outbreak Prediction</h2>
+        <div class="row">
+            <div class="col">
+                <label>Week of Outbreak:</label>
+                <input type="number" name="week" required>
+
+                <label>District:</label>
+                <input type="text" name="district" required>
+
+                <label>Cases:</label>
+                <input type="number" name="cases" required>
+
+                <label>Deaths:</label>
+                <input type="number" name="deaths" required>
+
+                <label>Latitude:</label>
+                <input type="number" step="any" name="lat" required>
+
+                <label>Longitude:</label>
+                <input type="number" step="any" name="lon" required>
+            </div>
+
+            <div class="col">
+                <label>Day:</label>
+                <input type="number" name="day" required>
+
+                <label>Month:</label>
+                <input type="number" name="mon" required>
+
+                <label>Year:</label>
+                <input type="number" name="year" required>
+
+                <label>Precipitation (mm):</label>
+                <input type="number" step="any" name="preci" required>
+
+                <label>Leaf Area Index (LAI):</label>
+                <input type="number" step="any" name="lai" required>
+
+                <label>Temperature (°C):</label>
+                <input type="number" step="any" name="temp" required>
+
+                <label>State/UT:</label>
+                <select name="state" required>
+                    {% for s in states %}
+                        <option value="{{ s }}">{{ s }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>
